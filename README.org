@@ -53,5 +53,4 @@ Then, sent to the webmaster the files =Dockerfile= and =docker-compose.yml=. Tha
 ** FIXME
 
 It seems that a few bugs are still present. Namely:
-- it is not possible for player 1 to submit a line with only zeros without first putting a one in one place, and then putting it back to 0
 - eventually make sure that if player 2 plays before player 1, things don't break
