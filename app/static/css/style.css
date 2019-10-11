@@ -11,10 +11,10 @@ body{
     justify-content: center;
 }
 
+
 table{
     border:1px solid black;
     text-align:center;
-    margin-top: 20px;
 }
 
 #log{
@@ -84,4 +84,30 @@ form{
 }
 #moredetails{
     display: none;
+}
+
+
+.title{
+    margin-bottom: 25px;
+    max-width: 400px;
+}
+
+a{
+    color:black;
+}
+
+#submitzone{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    max-width:100px;
+}
+#tablesubmit{
+    display: flex;
+    justify-content: center;
+    margin-top:30px;
+}
+
+.subs{
 }
