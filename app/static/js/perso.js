@@ -9,7 +9,35 @@ function check(){
     var checktxt=document.getElementById('select1').value+document.getElementById('select2').value+document.getElementById('select3').value;
     var tabcheck=checktxt.split('');
     var check=parseInt(tabcheck[0])+parseInt(tabcheck[1])+parseInt(tabcheck[2]);
-    console.log(check);
+    var testaire="paire";
+    if(num==1){
+        if(check % 2===1){
+            document.getElementById('submit1').innerHTML="impaire";
+            document.getElementById('submit1').style.display="block";
+        } else{
+            document.getElementById('submit1').innerHTML="paire";
+            document.getElementById('submit1').style.display="block";
+        }
+
+    } else if(num==2){
+        if(check % 2===1){
+            document.getElementById('submit2').innerHTML="impaire";
+            document.getElementById('submit2').style.display="block";
+        } else{
+            document.getElementById('submit2').innerHTML="paire";
+            document.getElementById('submit2').style.display="block";
+        }
+
+    } else if(num==3){
+        if(check % 2===1){
+            document.getElementById('submit3').innerHTML="impaire";
+            document.getElementById('submit3').style.display="block";
+        } else{
+            document.getElementById('submit3').innerHTML="paire";
+            document.getElementById('submit3').style.display="block";
+        }
+
+    }
     if (tab1){
         if(check % 2===1){
             document.getElementById('subbuton').style.display="none";
