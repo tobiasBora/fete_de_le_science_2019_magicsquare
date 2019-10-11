@@ -17,7 +17,7 @@ folder=os.path.dirname(DB_FILE)
 if folder:
     os.makedirs(folder, exist_ok=True)
     conn = sqlite3.connect(DB_FILE)
-    conn.execute('CREATE TABLE IF NOT EXISTS session (id VARCHAR(256), p1line VARCHAR(256), p1val VARCHAR(256), p2col VARCHAR(256), p2val VARCHAR(256))')
+    conn.execute('CREATE TABLE IF NOT EXISTS session (id VARCHAR(256), p1line VARCHAR(256), p1val VARCHAR(256), p2col VARCHAR(256), p2val VARCHAR(256), qres1 VARCHAR(256), qres2 VARCHAR(256))')
     conn.commit()
     conn.close()
 
@@ -49,7 +49,7 @@ def waiting1():
     p2c= 0
     p2x= 0
     curr=conn.cursor()
-    curr.execute("INSERT INTO session (id,p1line,p1val,p2col,p2val) VALUES (?,?,?,?,?)",[ids,numline,x,p2c,p2x] )
+    curr.execute("INSERT INTO session (id,p1line,p1val,p2col,p2val,qres1,qres2) VALUES (?,?,?,?,?,?,?)",[ids,numline,x,p2c,p2x,"",""] )
     conn.commit()
     return waiting(ids)
 
@@ -81,11 +81,18 @@ def results(ids):
     items1=items.fetchone()
     numline=int(items1[1])-1
     numcol=int(items1[3])-1
-    # Quantum
-    with ExitStack() as global_stack:
-        magic_square = MagicSquare(global_stack, debug=True)
-        ma = magic_square.alice_measurement(numline)
-        mb = magic_square.bob_measurement(numcol)   
-        return render_template('resultats.html', items1=items1, ma=ma, mb=mb, titre="Résultats")
+    qres1=items1[5]
+    qres2=items1[6]
+    if qres1 == "" or qres2 == "":
+        # Quantum
+        with ExitStack() as global_stack:
+            magic_square = MagicSquare(global_stack, debug=True)
+            ma = magic_square.alice_measurement(numline)
+            mb = magic_square.bob_measurement(numcol)
+            conn = sqlite3.connect(DB_FILE)
+            curr=conn.cursor()
+            curr.execute("UPDATE session SET qres1=?, qres2=? WHERE id=? ", (qres1, qres2, ids))
+            conn.commit()
+    return render_template('resultats.html', items1=items1, ma=ma, mb=mb, titre="Résultats")
 
 
