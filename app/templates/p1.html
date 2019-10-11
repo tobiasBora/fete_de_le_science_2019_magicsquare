@@ -4,9 +4,10 @@
 
 
 <form action="{{ url_for('waiting1') }}" method="POST" id="formp1">
-<div id="log">Vous etes le joueur 1. Vous jouez sur la session <span id='numsess'>blabla</span><br />
-Souvenez vous, quand vous remplissez la ligne, la somme des élements doit etre paire.</div>
-<table>
+<div id="log" class="title">Vous etes le joueur 1. Vous jouez sur la session <span id='numsess'>blabla</span><br />
+Quand vous remplissez la ligne, la somme des élements doit etre paire.
+<br />Le but du jeu sera d'avoir la même valeur que votre coéquipier sur la case en commun.</div>
+<div id="tablesubmit"><table>
 	<tbody id="tab1">
 		<tr>
 			<td>1</td><td></td><td></td>
@@ -19,6 +20,8 @@ Souvenez vous, quand vous remplissez la ligne, la somme des élements doit etre 
 		</tr>
 	</tbody>
 </table>
+<div id="submitzone"><div class="subs" id="submit1"></div><div class="subs" id="submit2"></div><div class="subs" id="submit3"></div></div>
+</div>
 
 <div id="inputs" style="display:none"></div>
 
